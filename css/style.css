@@ -24,39 +24,39 @@ div.centered table {
   text-align: left;
 }
 
-#topLeft {
+#top-left {
   border-bottom: 5px solid #28876e;
   border-right: 5px solid #28876e;
 }
 
-#topMid {
+#top-mid {
   border-bottom: 5px solid #28876e;
   border-right: 5px solid #28876e;
 }
 
-#topRight {
+#top-right {
   border-bottom: 5px solid #28876e;
 }
 
-#midLeft {
-  border-bottom: 5px solid #28876e;
-  border-right: 5px solid #28876e;
-}
-
-#midMid {
+#mid-left {
   border-bottom: 5px solid #28876e;
   border-right: 5px solid #28876e;
 }
 
-#midRight {
+#mid-mid {
   border-bottom: 5px solid #28876e;
-}
-
-#btmLeft {
   border-right: 5px solid #28876e;
 }
 
-#btmMid {
+#mid-right {
+  border-bottom: 5px solid #28876e;
+}
+
+#btm-left {
+  border-right: 5px solid #28876e;
+}
+
+#btm-mid {
   border-right: 5px solid #28876e;
 }
 
@@ -69,7 +69,7 @@ td {
   width: 200px;
 }
 
-.selectionScreen {
+.selection-screen {
   width: 300px;
   height: 200px;
   position: fixed;
@@ -82,7 +82,7 @@ td {
   box-shadow: 5px 5px 10px #28876e;
 }
 
-.twoOptions {
+.two-options {
   margin: 0 auto;
   font-size: 40px;
 }
@@ -97,7 +97,7 @@ a:hover {
   color: inherit;
 }
 
-.turnIndicators {
+.turn-indicators {
   color: #28876e;
   padding-top: 64px;
 }

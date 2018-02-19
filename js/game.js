@@ -1,11 +1,11 @@
 //Hide indicators showing who's turn it is
-$(".turnIndicators").hide();
+$(".turn-indicators").hide();
 
 //Hide all naughts and crosses symbols
 $(".symbol").hide();
 
 //Hide main menu screens
-$(".selectionScreen").hide();
+$(".selection-screen").hide();
 
 //Document ready check
 $(function() {
@@ -52,15 +52,15 @@ $(function() {
   function gameOverMsg() {
     if (gameMode == "twoP") {
       if (turn == playerOne) {
-        $('#winMessage').text("Player 1 won!");
+        $('#win-message').text("Player 1 won!");
       } else {
-        $('#winMessage').text("Player 2 won!");
+        $('#win-message').text("Player 2 won!");
       }
     } else if (gameMode == "oneP") {
       if (turn == playerOne) {
-        $('#winMessage').text("You won!");
+        $('#win-message').text("You won!");
       } else {
-        $('#winMessage').text("You lost!");
+        $('#win-message').text("You lost!");
       }
     }
   }
@@ -183,8 +183,8 @@ $(function() {
           insertSymbol(i, 2);
           arr[i][2] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
         } else if (arr[i][1] == playerOne &&
@@ -193,8 +193,8 @@ $(function() {
           insertSymbol(i, 0);
           arr[i][0] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
         } else if (arr[i][0] == playerOne &&
@@ -203,8 +203,8 @@ $(function() {
           insertSymbol(i, 1);
           arr[i][1] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
 
@@ -215,8 +215,8 @@ $(function() {
           insertSymbol(2, i);
           arr[2][i] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
         } else if (arr[0][i] == playerOne &&
@@ -225,8 +225,8 @@ $(function() {
           insertSymbol(1, i);
           arr[1][i] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
         } else if (arr[1][i] == playerOne &&
@@ -235,8 +235,8 @@ $(function() {
           insertSymbol(0, i);
           arr[0][i] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
 
@@ -247,8 +247,8 @@ $(function() {
           insertSymbol(2, 2);
           arr[2][2] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
         } else if (arr[1][1] == playerOne &&
@@ -257,8 +257,8 @@ $(function() {
           insertSymbol(0, 0);
           arr[0][0] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
         } else if (arr[0][0] == playerOne &&
@@ -267,8 +267,8 @@ $(function() {
           insertSymbol(1, 1);
           arr[1][1] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
         } else if (arr[0][2] == playerOne &&
@@ -277,8 +277,8 @@ $(function() {
           insertSymbol(2, 0);
           arr[2][0] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
         } else if (arr[0][2] == playerOne &&
@@ -287,8 +287,8 @@ $(function() {
           insertSymbol(1, 1);
           arr[1][1] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
         } else if (arr[1][1] == playerOne &&
@@ -297,8 +297,8 @@ $(function() {
           insertSymbol(0, 2);
           arr[0][2] = playerTwo;
           turn = playerOne;
-          $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+          $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
           return true;
         }
@@ -317,8 +317,8 @@ $(function() {
         insertSymbol(i, 2);
         arr[i][2] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
       } else if (arr[i][0] === 0 &&
@@ -328,8 +328,8 @@ $(function() {
         insertSymbol(i, 0);
         arr[i][0] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
       } else if (arr[i][0] === 0 &&
@@ -339,8 +339,8 @@ $(function() {
         insertSymbol(i, 1);
         arr[i][1] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
 
@@ -352,8 +352,8 @@ $(function() {
         insertSymbol(2, i);
         arr[2][i] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
       } else if (arr[0][i] === 0 &&
@@ -363,8 +363,8 @@ $(function() {
         insertSymbol(0, i);
         arr[0][i] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
       } else if (arr[0][i] === 0 &&
@@ -374,8 +374,8 @@ $(function() {
         insertSymbol(1, i);
         arr[1][i] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
 
@@ -387,8 +387,8 @@ $(function() {
         insertSymbol(2, 2);
         arr[2][2] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
       } else if (arr[0][0] === 0 &&
@@ -398,8 +398,8 @@ $(function() {
         insertSymbol(0, 0);
         arr[0][0] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
       } else if (arr[0][0] === 0 &&
@@ -409,8 +409,8 @@ $(function() {
         insertSymbol(1, 1);
         arr[1][1] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
       } else if (arr[0][2] == playerTwo &&
@@ -420,8 +420,8 @@ $(function() {
         insertSymbol(2, 0);
         arr[2][0] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
       } else if (arr[0][2] === 0 &&
@@ -431,8 +431,8 @@ $(function() {
         insertSymbol(0, 2);
         arr[0][2] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
         return true;
       } else if (arr[0][2] === 0 &&
@@ -442,8 +442,8 @@ $(function() {
         insertSymbol(1, 1);
         arr[1][1] = playerTwo;
         turn = playerOne;
-        $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+        $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
       }
     }
@@ -452,9 +452,9 @@ $(function() {
 
   //This function draws the game and resets the board state for another game
   function drawGame() {
-    $(".turnIndicators").hide();
-    $('#winMessage').text("It's a draw!");
-    $('#gameOverScreen').fadeIn(500);
+    $(".turn-indicators").hide();
+    $('#win-message').text("It's a draw!");
+    $('#game-over-screen').fadeIn(500);
     arr = [];
   }
 
@@ -471,8 +471,8 @@ $(function() {
       insertSymbol(val1, val2);
       arr[val1][val2] = playerTwo;
       turn = playerOne;
-      $('#compTurn').delay(1000).fadeOut(500, function() {
-            $('#playerTurn').fadeIn(500);
+      $('#comp-turn').delay(1000).fadeOut(500, function() {
+            $('#player-turn').fadeIn(500);
           });
       return true;
     }
@@ -491,9 +491,9 @@ $(function() {
         gameMode = "";
         row = [i, i, i];
         column = [0, 1, 2];
-        $(".turnIndicators").hide();
+        $(".turn-indicators").hide();
         gameOverMsg();
-        $("#gameOverScreen").fadeIn(500);
+        $("#game-over-screen").fadeIn(500);
         $($tableCells).each(function() {
           //Colour in the winning cells
           for (var j = 0; j < row.length; j++) {
@@ -511,9 +511,9 @@ $(function() {
           arr[1][i] == arr[2][i]) {
         row = [0, 1, 2];
         column = [i, i, i];
-        $(".turnIndicators").hide();
+        $(".turn-indicators").hide();
         gameOverMsg();
-        $("#gameOverScreen").fadeIn(500);
+        $("#game-over-screen").fadeIn(500);
         $tableCells.each(function() {
           //Colour in the winning cells
           for (var j = 0; j < row.length; j++) {
@@ -531,9 +531,9 @@ $(function() {
           arr[1][1] == arr[2][2]) {
         row = [0, 1, 2];
         column = [0, 1, 2];
-        $(".turnIndicators").hide();
+        $(".turn-indicators").hide();
         gameOverMsg();
-        $("#gameOverScreen").fadeIn(500);
+        $("#game-over-screen").fadeIn(500);
         $tableCells.each(function() {
           //Colour in the winning cells
           for (var j = 0; j < row.length; j++) {
@@ -550,9 +550,9 @@ $(function() {
           arr[1][1] == arr[2][0]) {
         row = [0, 1, 2];
         column = [2, 1, 0];
-        $(".turnIndicators").hide();
+        $(".turn-indicators").hide();
         gameOverMsg();
-        $("#gameOverScreen").fadeIn(500);
+        $("#game-over-screen").fadeIn(500);
         ($tableCells).each(function() {
           //Colour in the winning cells
           for (var j = 0; j < row.length; j++) {
@@ -588,33 +588,33 @@ $(function() {
   }
 
   //Deciding to play again
-  $('#playAgain').on('click', function() {
+  $('#play-again').on('click', function() {
     arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     $('.symbol').hide();
-    $('#gameOverScreen').hide();
-    $('#playerScreen').fadeIn(500);
+    $('#game-over-screen').hide();
+    $('#player-screen').fadeIn(500);
     $('td').css("background", "");
     arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
   });
 
   //This fades in the 1P or 2P options
-  $("#playerScreen").fadeIn(500);
+  $("#player-screen").fadeIn(500);
 
   //Choosing single player mode
-  $("#oneP").on("click", function(e) {
+  $("#one-p").on("click", function(e) {
     gameMode = "oneP";
-    $("#playerScreen").fadeOut(500);
-    $("#symbolScreen").fadeIn(500);
-    $("#singlePlayer").show();
-    $("#playerTurn").hide();
-    $("#compTurn").hide();
+    $("#player-screen").fadeOut(500);
+    $("#symbol-screen").fadeIn(500);
+    $("#single-player").show();
+    $("#player-turn").hide();
+    $("#comp-turn").hide();
   });
 
   //Choosing two player mode
-  $("#twoP").on("click", function(e) {
+  $("#two-p").on("click", function(e) {
     gameMode = "twoP";
-    $("#playerScreen").fadeOut(500);
-    $("#twoPlayers").show();
+    $("#player-screen").fadeOut(500);
+    $("#two-players").show();
     $("#p2").hide();
     $("#p1").hide().fadeIn(500);
     playerOne = turn;
@@ -629,22 +629,22 @@ $(function() {
   $("#crosses").on("click", function(e) {
     playerOne = "cross";
     playerTwo = "naught";
-    $("#symbolScreen").fadeOut(500);
+    $("#symbol-screen").fadeOut(500);
     if (playerOne == turn) {
-      $("#playerTurn").fadeIn(500);
+      $("#player-turn").fadeIn(500);
     } else {
-      $("#compTurn").fadeIn(500);
+      $("#comp-turn").fadeIn(500);
       computerTurn();
     }
   });
   $("#naughts").on("click", function(e) {
     playerOne = "naught";
     playerTwo = "cross";
-    $("#symbolScreen").fadeOut(500);
+    $("#symbol-screen").fadeOut(500);
     if (playerOne == turn) {
-      $("#playerTurn").fadeIn(500);
+      $("#player-turn").fadeIn(500);
     } else {
-      $("#compTurn").fadeIn(500);
+      $("#comp-turn").fadeIn(500);
       computerTurn();
     }
   });
@@ -684,8 +684,8 @@ $(function() {
         } else {
           turn = "cross";
         }
-        $('#playerTurn').hide();
-        $('#compTurn').fadeIn(500);
+        $('#player-turn').hide();
+        $('#comp-turn').fadeIn(500);
         computerTurn();
       }
     }

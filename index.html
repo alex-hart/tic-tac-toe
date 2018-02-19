@@ -12,19 +12,19 @@
     <div class="jumbotron-fluid">
       <div class="container">
         <!--Screen for selecting 1P or 2P-->
-        <div id="playerScreen"class="selectionScreen vertical-center">
-          <div id="noPlayers" class="twoOptions">
-            <a href="#" class="anchor" id="oneP">
+        <div id="player-screen"class="selection-screen vertical-center">
+          <div id="no-players" class="two-options">
+            <a href="#" class="anchor" id="one-p">
               <p>1P</p>
             </a>
-            <a href="#" class="anchor" id="twoP">
+            <a href="#" class="anchor" id="two-p">
               <p>2P</p>
             </a>
             </div>
         </div>
         <!--Screen for selecting naughts or crosses-->
-        <div id="symbolScreen" class="selectionScreen vertical-center">
-          <div class="twoOptions">
+        <div id="symbol-screen" class="selection-screen vertical-center">
+          <div class="two-options">
             <a href="#" class="anchor">
               <p id="crosses" >X</p>
             </a>
@@ -34,21 +34,21 @@
           </div>
         </div>
         <!--Screen when game is finished-->
-        <div id="gameOverScreen" class="selectionScreen vertical-center text-center">
-          <div class="twoOptions">
-            <p id="winMessage"></p>
-            <a href="#">
-              <p id="playAgain">Play Again?</p>
+        <div id="game-over-screen" class="selection-screen vertical-center text-center">
+          <div class="two-options">
+            <p id="win-message"></p>
+            <a href="#" class="anchor">
+              <p id="play-again">Play Again?</p>
             </a>
           </div>
         </div>
         <!--Indicators to show whose turn it is-->
-        <div class="turnIndicators text-center" id="singlePlayer">
-          <h2 id="playerTurn">Your Turn</h2>
-          <h2 id="compTurn">Computer's Turn</h2>
+        <div class="turn-indicators text-center" id="single-player">
+          <h2 id="player-turn">Your Turn</h2>
+          <h2 id="comp-turn">Computer's Turn</h2>
         </div>
 
-        <div class="turnIndicators text-center" id="twoPlayers">
+        <div class="turn-indicators text-center" id="two-players">
           <h2 id="p1">P1 Turn</h2>
           <h2 id="p2">P2 Turn</h2>
         </div>
@@ -56,43 +56,43 @@
         <div class="centered">
           <table class="text-center">
             <tr>
-              <td id="topLeft" row=0 position=0>
+              <td id="top-left" row=0 position=0>
                 <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
                 <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
               </td>
-              <td id="topMid" row=0 position=1>
+              <td id="top-mid" row=0 position=1>
                 <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
                 <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
               </td>
-              <td id="topRight" row=0 position=2>
-                <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
-                <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
-              </td>
-            </tr>
-            <tr>
-              <td id="midLeft" row=1 position=0>
-                <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
-                <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
-              </td>
-              <td id="midMid" row=1 position=1>
-                <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
-                <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
-              </td>
-              <td id="midRight" row=1 position=2>
+              <td id="top-right" row=0 position=2>
                 <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
                 <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
               </td>
             </tr>
             <tr>
-              <td id="btmLeft" row=2 position=0>
+              <td id="mid-left" row=1 position=0>
                 <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
                 <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
               </td>
-              <td id="btmMid" row=2 position=1>
+              <td id="mid-mid" row=1 position=1>
                 <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
                 <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
               </td>
-              <td id="btmRight" row=2 position=2>
+              <td id="mid-right" row=1 position=2>
+                <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
+                <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
+              </td>
+            </tr>
+            <tr>
+              <td id="btm-left" row=2 position=0>
+                <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
+                <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
+              </td>
+              <td id="btm-mid" row=2 position=1>
+                <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
+                <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
+              </td>
+              <td id="btm-right" row=2 position=2>
                 <img class="symbol cross" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png">
                 <img class="symbol naught" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png">
               </td>
