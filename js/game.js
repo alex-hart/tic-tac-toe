@@ -28,12 +28,17 @@ $(function() {
   var gameMode;
   var playerOne;
   var playerTwo;
+  var click = false;
 
   var $tableCells = $("td");
 
   //Function to generate random number between min and max val, used for when computer has to make a random move if their its is first
   function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function allowClick() {
+    click = true;
   }
 
   //Function to check if a blank space remains on the board
@@ -186,6 +191,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
         } else if (arr[i][1] == playerOne &&
                    arr[i][1] == arr[i][2] &&
@@ -196,6 +202,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
         } else if (arr[i][0] == playerOne &&
                    arr[i][0] == arr[i][2] &&
@@ -206,6 +213,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
 
           //----- COLUMNS -----
@@ -218,6 +226,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
         } else if (arr[0][i] == playerOne &&
                    arr[0][i] == arr[2][i] &&
@@ -228,6 +237,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
         } else if (arr[1][i] == playerOne &&
                    arr[1][i] == arr[2][i] &&
@@ -238,6 +248,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
 
           //----- DIAGONAL -----
@@ -250,6 +261,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
         } else if (arr[1][1] == playerOne &&
                    arr[1][1] == arr[2][2] &&
@@ -260,6 +272,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
         } else if (arr[0][0] == playerOne &&
                    arr[0][0] == arr[2][2] &&
@@ -270,6 +283,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
         } else if (arr[0][2] == playerOne &&
                    arr[0][2] == arr[1][1] &&
@@ -280,6 +294,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
         } else if (arr[0][2] == playerOne &&
                    arr[0][2] == arr[2][0] &&
@@ -290,6 +305,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
         } else if (arr[1][1] == playerOne &&
                    arr[1][1] == arr[2][0] &&
@@ -300,6 +316,7 @@ $(function() {
           $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
           });
+          setTimeout(allowClick, 2000);
           return true;
         }
       }
@@ -319,7 +336,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
       } else if (arr[i][0] === 0 &&
                  arr[i][1] == playerTwo &&
@@ -330,7 +348,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
       } else if (arr[i][0] === 0 &&
                  arr[i][1] === 0 &&
@@ -341,7 +360,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
 
       //----- COLUMNS -----
@@ -354,7 +374,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
       } else if (arr[0][i] === 0 &&
                  arr[1][i] == playerTwo &&
@@ -365,7 +386,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
       } else if (arr[0][i] === 0 &&
                  arr[1][i] === 0 &&
@@ -376,7 +398,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
 
       //----- DIAGONAL -----
@@ -389,7 +412,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
       } else if (arr[0][0] === 0 &&
                  arr[1][1] == playerTwo &&
@@ -400,7 +424,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
       } else if (arr[0][0] === 0 &&
                  arr[1][1] === 0 &&
@@ -411,7 +436,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
       } else if (arr[0][2] == playerTwo &&
                  arr[1][1] === 0 &&
@@ -422,7 +448,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
       } else if (arr[0][2] === 0 &&
                  arr[1][1] == playerTwo &&
@@ -433,7 +460,8 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
         return true;
       } else if (arr[0][2] === 0 &&
                  arr[1][1] === 0 &&
@@ -444,7 +472,9 @@ $(function() {
         turn = playerOne;
         $('#comp-turn').delay(1000).fadeOut(500, function() {
             $('#player-turn').fadeIn(500);
-          });
+        });
+        setTimeout(allowClick, 2000);
+        return true;
       }
     }
     return false;
@@ -472,8 +502,9 @@ $(function() {
       arr[val1][val2] = playerTwo;
       turn = playerOne;
       $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
+        $('#player-turn').fadeIn(500);
+      });
+      setTimeout(allowClick, 2000);
       return true;
     }
     return false;
@@ -594,7 +625,7 @@ $(function() {
     $('#game-over-screen').hide();
     $('#player-screen').fadeIn(500);
     $('td').css("background", "");
-    arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    click = false;
   });
 
   //This fades in the 1P or 2P options
@@ -632,6 +663,7 @@ $(function() {
     $("#symbol-screen").fadeOut(500);
     if (playerOne == turn) {
       $("#player-turn").fadeIn(500);
+      click = true;
     } else {
       $("#comp-turn").fadeIn(500);
       computerTurn();
@@ -643,6 +675,7 @@ $(function() {
     $("#symbol-screen").fadeOut(500);
     if (playerOne == turn) {
       $("#player-turn").fadeIn(500);
+      click = true;
     } else {
       $("#comp-turn").fadeIn(500);
       computerTurn();
@@ -675,7 +708,7 @@ $(function() {
 
     //------- SINGLE PLAYER MODE -------
     } else {
-      if (arr[$(this).attr("row")][$(this).attr("position")] === 0) {
+      if (arr[$(this).attr("row")][$(this).attr("position")] === 0 && click === true) {
         arr[$(this).attr("row")][$(this).attr("position")] = turn;
         $(this).find("." + turn).show();
         checkWin();
@@ -686,6 +719,7 @@ $(function() {
         }
         $('#player-turn').hide();
         $('#comp-turn').fadeIn(500);
+        click = false;
         computerTurn();
       }
     }
