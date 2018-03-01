@@ -11,9 +11,9 @@ $(".selection-screen").hide();
 $(function() {
   //Array of the tic tac toe board
   //0: empty
-  //1: cross
-  //2: naught
   var arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+  var scenarioArr;
+  var emptyRow, emptyColumn;
 
   //Randomly decide who goes first
   var turn;
@@ -25,14 +25,12 @@ $(function() {
   }
 
   //Variables to track game type and who's turn it is
-  var gameMode;
-  var playerOne;
-  var playerTwo;
+  var gameMode, playerOne, playerTwo;
   var click = false;
 
   var $tableCells = $("td");
 
-  //Function to generate random number between min and max val, used for when computer has to make a random move if their its is first
+  //Function to generate random number between min and max val, used for when computer has to make a random move if going first
   function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -81,100 +79,110 @@ $(function() {
 
   // ----- COMPUTER AI -----
 
-  //Function to end the game if the computer can make such a move. It essentially looks for every possible combination where two naughts or crosses are lined up with the third space blank as well. This is checked by using the array as a model of the current board state
-  function endGame() {
-    for (var i = 0; i < arr.length; i++) {
-      // ----- ROWS -----
-      if (arr[i][0] == playerTwo &&
-          arr[i][0] == arr[i][1] &&
-          arr[i][2] === 0 &&
-          turn == playerTwo) {
-        insertSymbol(i, 2);
-        arr[i][2] = playerTwo;
-        return true;
-      } else if (arr[i][1] == playerTwo &&
-                 arr[i][1] == arr[i][2] &&
-                 arr[i][0] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(i, 0);
-        arr[i][0] = playerTwo;
-        return true;
-      } else if (arr[i][0] == playerTwo &&
-                 arr[i][0] == arr[i][2] &&
-                 arr[i][1] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(i, 1);
-        arr[i][1] = playerTwo;
-        return true;
-
-        //----- COLUMNS -----
-      } else if (arr[0][i] == playerTwo &&
-                 arr[0][i] == arr[1][i] &&
-                 arr[2][i] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(2, i);
-        arr[2][i] = playerTwo;
-        return true;
-      } else if (arr[0][i] == playerTwo &&
-                arr[0][i] == arr[2][i] &&
-                arr[1][i] === 0 &&
-                turn == playerTwo) {
-        insertSymbol(1, i);
-        arr[1][i] = playerTwo;
-        return true;
-      } else if (arr[1][i] == playerTwo &&
-                 arr[1][i] == arr[2][i] &&
-                 arr[0][i] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(0, i);
-        arr[0][i] = playerTwo;
-
-      //----- DIAGONAL -----
-      } else if (arr[0][0] == playerTwo &&
-                 arr[0][0] == arr[1][1] &&
-                 arr[2][2] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(2, 2);
-        arr[2][2] = playerTwo;
-        return true;
-      } else if (arr[1][1] == playerTwo &&
-                 arr[1][1] == arr[2][2] &&
-                 arr[0][0] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(0, 0);
-        arr[0][0] = playerTwo;
-        return true;
-      } else if (arr[0][0] == playerTwo &&
-                 arr[0][0] == arr[2][2] &&
-                 arr[1][1] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(1, 1);
-        arr[1][1] = playerTwo;
-        return true;
-      } else if (arr[0][2] == playerTwo &&
-                 arr[0][2] == arr[1][1] &&
-                 arr[2][0] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(2, 0);
-        arr[2][0] = playerTwo;
-        return true;
-      } else if (arr[0][2] == playerTwo &&
-                 arr[0][2] == arr[2][0] &&
-                 arr[1][1] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(1 ,1);
-        arr[1][1] = playerTwo;
-        return true;
-      } else if (arr[1][1] == playerTwo &&
-                 arr[1][1] == arr[2][0] &&
-                 arr[0][2] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(0 , 2);
-        arr[0][2] = playerTwo;
-        return true;
+  function rowChecker(scenarioArr) {
+    var tempArr = scenarioArr.slice();
+    emptyColumn = 2;
+    emptyRow = 0;
+    for (i = 0; i < tempArr.length; i++) {
+      for (j = 0; j < arr.length; j++) {
+        if (
+          arr[j][0] == tempArr[0] &&
+          arr[j][1] == tempArr[1] &&
+          arr[j][2] == tempArr[2]
+        ) {
+          emptyRow = j;
+          return true;
+        }
       }
+      tempArr.push(tempArr.shift());
+      emptyColumn--;
     }
     return false;
+  }
+
+  function columnChecker(scenarioArr) {
+    var tempArr = scenarioArr.slice();
+    emptyColumn = 0;
+    emptyRow = 2;
+    for (i = 0; i < tempArr.length; i++) {
+      for (j = 0; j < arr.length; j++) {
+        if (
+          arr[0][j] == tempArr[0] &&
+          arr[1][j] == tempArr[1] &&
+          arr[2][j] == tempArr[2]
+        ) {
+          emptyColumn = j;
+          return true;
+        }
+      }
+      tempArr.push(tempArr.shift());
+      emptyRow--;
+    }
+    return false;
+  }
+
+  function diagChecker1(scenarioArr) {
+    var tempArr = scenarioArr.slice();
+    emptyColumn = 2;
+    emptyRow = 2;
+    for (i = 0; i < tempArr.length; i++) {
+      if (
+        arr[0][0] == tempArr[0] &&
+        arr[1][1] == tempArr[1] &&
+        arr[2][2] == tempArr[2]
+      ) {
+        return true;
+      }
+      tempArr.push(tempArr.shift());
+      emptyColumn--;
+      emptyRow--;
+    }
+    return false;
+  }
+
+  function diagChecker2(scenarioArr) {
+    var tempArr = scenarioArr.slice();
+    emptyColumn = 0;
+    emptyRow = 2;
+    for (i = 0; i < tempArr.length; i++) {
+      if (
+        arr[0][2] == tempArr[0] &&
+        arr[1][1] == tempArr[1] &&
+        arr[2][0] == tempArr[2]
+      ) {
+        return true;
+      }
+      tempArr.push(tempArr.shift());
+      emptyColumn++;
+      emptyRow--;
+    }
+    return false;
+  }
+
+  //Function to end the game if the computer can make such a move. It essentially looks for every possible combination where two naughts or crosses are lined up with the third space blank as well. This is checked by using the array as a model of the current board state
+  function endGame() {
+    if (turn == playerTwo) {
+      scenarioArr = [playerTwo, playerTwo, 0];
+      if (rowChecker(scenarioArr)) {
+        insertSymbol(emptyRow, emptyColumn);
+        arr[emptyRow][emptyColumn] = playerTwo;
+        return true;
+      } else if (columnChecker(scenarioArr)) {
+        insertSymbol(emptyRow, emptyColumn);
+        arr[emptyRow][emptyColumn] = playerTwo;
+        return true;
+      } else if (diagChecker1(scenarioArr)) {
+        insertSymbol(emptyRow, emptyColumn);
+        arr[emptyRow][emptyColumn] = playerTwo;
+        return true;
+      } else if (diagChecker2(scenarioArr)) {
+        insertSymbol(emptyRow, emptyColumn);
+        arr[emptyRow][emptyColumn] = playerTwo;
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 
   //This function is for the computer to block the human player from winning. It is essentially the same as the above function but checks for the player's symbols rather than its own.
@@ -605,7 +613,7 @@ $(function() {
   //Computer turn function: flows down from top priority move functions to least priority move functions ending with drawing the game if no spots are available on the board
   function computerTurn() {
     if (endGame()) {
-      endGame();
+      checkWin();
     } else if (blockWin()) {
       blockWin();
     } else if (setupWin()) {
@@ -615,7 +623,6 @@ $(function() {
     } else {
       drawGame();
     }
-    checkWin();
   }
 
   //Deciding to play again
