@@ -17,11 +17,13 @@ $(function() {
 
   //Randomly decide who goes first
   var turn;
-  var randomNo = Math.round(Math.random());
-  if (randomNo === 0) {
-    turn = "cross";
-  } else {
-    turn = "naught";
+  function decideTurn() {
+    var randomNo = Math.round(Math.random());
+    if (randomNo === 0) {
+      turn = "cross";
+    } else {
+      turn = "naught";
+    }
   }
 
   //Variables to track game type and who's turn it is
@@ -53,6 +55,7 @@ $(function() {
 
   //Function to generate the correct game over message
   function gameOverMsg() {
+    console.log(turn);
     if (gameMode == "twoP") {
       if (turn == playerOne) {
         $('#win-message').text("Player 1 won!");
@@ -527,13 +530,12 @@ $(function() {
       if (arr[i][0] !== 0 &&
           arr[i][0] == arr[i][1] &&
           arr[i][1] == arr[i][2]) {
-        gameMode = "";
         row = [i, i, i];
         column = [0, 1, 2];
         $(".turn-indicators").hide();
         gameOverMsg();
         $("#game-over-screen").fadeIn(500);
-        $($tableCells).each(function() {
+        return $tableCells.each(function() {
           //Colour in the winning cells
           for (var j = 0; j < row.length; j++) {
             if ($(this).attr("row") == row[j] &&
@@ -553,7 +555,7 @@ $(function() {
         $(".turn-indicators").hide();
         gameOverMsg();
         $("#game-over-screen").fadeIn(500);
-        $tableCells.each(function() {
+        return $tableCells.each(function() {
           //Colour in the winning cells
           for (var j = 0; j < row.length; j++) {
             if ($(this).attr("row") == row[j] &&
@@ -562,7 +564,6 @@ $(function() {
             }
           }
         });
-        arr = [];
       }
       //Case for matching diagonals
       if (arr[0][0] !== 0 &&
@@ -573,7 +574,7 @@ $(function() {
         $(".turn-indicators").hide();
         gameOverMsg();
         $("#game-over-screen").fadeIn(500);
-        $tableCells.each(function() {
+        return $tableCells.each(function() {
           //Colour in the winning cells
           for (var j = 0; j < row.length; j++) {
             if ($(this).attr("row") == row[j] &&
@@ -582,7 +583,6 @@ $(function() {
             }
           }
         });
-        arr = [];
       }
       if (arr[0][2] !== 0 &&
           arr[0][2] == arr[1][1] &&
@@ -592,7 +592,7 @@ $(function() {
         $(".turn-indicators").hide();
         gameOverMsg();
         $("#game-over-screen").fadeIn(500);
-        ($tableCells).each(function() {
+        return $tableCells.each(function() {
           //Colour in the winning cells
           for (var j = 0; j < row.length; j++) {
             if ($(this).attr("row") == row[j] &&
@@ -601,7 +601,6 @@ $(function() {
             }
           }
         });
-        arr = [];
       }
     }
     //If all spots are taken and there is no match then it means the game is a draw
@@ -630,13 +629,15 @@ $(function() {
     arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     $('.symbol').hide();
     $('#game-over-screen').hide();
-    $('#player-screen').fadeIn(500);
     $('td').css("background", "");
     click = false;
+    init()
   });
 
-  //This fades in the 1P or 2P options
-  $("#player-screen").fadeIn(500);
+  function init() {
+    decideTurn();
+    $("#player-screen").fadeIn(500);
+  }
 
   //Choosing single player mode
   $("#one-p").on("click", function(e) {
@@ -731,4 +732,5 @@ $(function() {
       }
     }
   });
+  init();
 });
