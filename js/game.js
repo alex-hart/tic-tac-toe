@@ -162,6 +162,16 @@ $(function() {
     return false;
   }
 
+  function endOfTurn(emptyRow, emptyColumn) {
+    insertSymbol(emptyRow, emptyColumn);
+    arr[emptyRow][emptyColumn] = playerTwo;
+    turn = playerOne;
+    $('#comp-turn').delay(1000).fadeOut(500, function() {
+      $('#player-turn').fadeIn(500);
+    });
+    setTimeout(allowClick, 2000);
+  }
+
   //Function to end the game if the computer can make such a move. It essentially looks for every possible combination where two naughts or crosses are lined up with the third space blank as well. This is checked by using the array as a model of the current board state
   function endGame() {
     if (turn == playerTwo) {
@@ -190,305 +200,46 @@ $(function() {
 
   //This function is for the computer to block the human player from winning. It is essentially the same as the above function but checks for the player's symbols rather than its own.
   function blockWin() {
-    for (var i = 0; i < arr.length; i++) {
-      if (turn == playerTwo) {
-          //----- ROWS -----
-        if (arr[i][0] == playerOne &&
-            arr[i][0] == arr[i][1] &&
-            arr[i][2] === 0) {
-          insertSymbol(i, 2);
-          arr[i][2] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-        } else if (arr[i][1] == playerOne &&
-                   arr[i][1] == arr[i][2] &&
-                   arr[i][0] === 0) {
-          insertSymbol(i, 0);
-          arr[i][0] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-        } else if (arr[i][0] == playerOne &&
-                   arr[i][0] == arr[i][2] &&
-                   arr[i][1] === 0) {
-          insertSymbol(i, 1);
-          arr[i][1] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-
-          //----- COLUMNS -----
-        } else if (arr[0][i] == playerOne &&
-                   arr[0][i] == arr[1][i] &&
-                   arr[2][i] === 0) {
-          insertSymbol(2, i);
-          arr[2][i] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-        } else if (arr[0][i] == playerOne &&
-                   arr[0][i] == arr[2][i] &&
-                   arr[1][i] === 0) {
-          insertSymbol(1, i);
-          arr[1][i] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-        } else if (arr[1][i] == playerOne &&
-                   arr[1][i] == arr[2][i] &&
-                   arr[0][i] === 0) {
-          insertSymbol(0, i);
-          arr[0][i] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-
-          //----- DIAGONAL -----
-        } else if (arr[0][0] == playerOne &&
-                   arr[0][0] == arr[1][1] &&
-                   arr[2][2] === 0) {
-          insertSymbol(2, 2);
-          arr[2][2] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-        } else if (arr[1][1] == playerOne &&
-                   arr[1][1] == arr[2][2] &&
-                   arr[0][0] === 0) {
-          insertSymbol(0, 0);
-          arr[0][0] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-        } else if (arr[0][0] == playerOne &&
-                   arr[0][0] == arr[2][2] &&
-                   arr[1][1] === 0) {
-          insertSymbol(1, 1);
-          arr[1][1] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-        } else if (arr[0][2] == playerOne &&
-                   arr[0][2] == arr[1][1] &&
-                   arr[2][0] === 0) {
-          insertSymbol(2, 0);
-          arr[2][0] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-        } else if (arr[0][2] == playerOne &&
-                   arr[0][2] == arr[2][0] &&
-                   arr[1][1] === 0) {
-          insertSymbol(1, 1);
-          arr[1][1] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-        } else if (arr[1][1] == playerOne &&
-                   arr[1][1] == arr[2][0] &&
-                   arr[0][2] === 0) {
-          insertSymbol(0, 2);
-          arr[0][2] = playerTwo;
-          turn = playerOne;
-          $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-          });
-          setTimeout(allowClick, 2000);
-          return true;
-        }
+    if (turn == playerTwo) {
+      scenarioArr = [playerOne, playerOne, 0];
+      if (rowChecker(scenarioArr)) {
+        endOfTurn(emptyRow, emptyColumn);
+        return true;
+      } else if (columnChecker(scenarioArr)) {
+        endOfTurn(emptyRow, emptyColumn);
+        return true;
+      } else if (diagChecker1(scenarioArr)) {
+        endOfTurn(emptyRow, emptyColumn);
+        return true;
+      } else if (diagChecker2(scenarioArr)) {
+        endOfTurn(emptyRow, emptyColumn);
+        return true;
+      } else {
+        return false;
       }
     }
-    return false;
   }
 
   //This function sets up a win for the computer for its next turn if the player does not block its next move.
   function setupWin() {
-    for (var i = 0; i < arr.length; i++) {
-      if (arr[i][0] == playerTwo &&
-          arr[i][1] === 0 &&
-          arr[i][2] === 0 &&
-          turn == playerTwo) {
-        insertSymbol(i, 2);
-        arr[i][2] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
+    if (turn == playerTwo) {
+      scenarioArr = [playerTwo, 0, 0];
+      if (rowChecker(scenarioArr)) {
+        endOfTurn(emptyRow, emptyColumn);
         return true;
-      } else if (arr[i][0] === 0 &&
-                 arr[i][1] == playerTwo &&
-                 arr[i][2] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(i, 0);
-        arr[i][0] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
+      } else if (columnChecker(scenarioArr)) {
+        endOfTurn(emptyRow, emptyColumn);
         return true;
-      } else if (arr[i][0] === 0 &&
-                 arr[i][1] === 0 &&
-                 arr[i][2] == playerTwo &&
-                 turn == playerTwo) {
-        insertSymbol(i, 1);
-        arr[i][1] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
+      } else if (diagChecker1(scenarioArr)) {
+        endOfTurn(emptyRow, emptyColumn);
         return true;
-
-      //----- COLUMNS -----
-      } else if (arr[0][i] == playerTwo &&
-                 arr[1][i] === 0 &&
-                 arr[2][i] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(2, i);
-        arr[2][i] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
+      } else if (diagChecker2(scenarioArr)) {
+        endOfTurn(emptyRow, emptyColumn);
         return true;
-      } else if (arr[0][i] === 0 &&
-                 arr[1][i] == playerTwo &&
-                 arr[2][i] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(0, i);
-        arr[0][i] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
-        return true;
-      } else if (arr[0][i] === 0 &&
-                 arr[1][i] === 0 &&
-                 arr[2][i] == playerTwo &&
-                 turn == playerTwo) {
-        insertSymbol(1, i);
-        arr[1][i] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
-        return true;
-
-      //----- DIAGONAL -----
-      } else if (arr[0][0] == playerTwo &&
-                 arr[1][1] === 0 &&
-                 arr[2][2] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(2, 2);
-        arr[2][2] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
-        return true;
-      } else if (arr[0][0] === 0 &&
-                 arr[1][1] == playerTwo &&
-                 arr[2][2] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(0, 0);
-        arr[0][0] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
-        return true;
-      } else if (arr[0][0] === 0 &&
-                 arr[1][1] === 0 &&
-                 arr[2][2] == playerTwo &&
-                 turn == playerTwo) {
-        insertSymbol(1, 1);
-        arr[1][1] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
-        return true;
-      } else if (arr[0][2] == playerTwo &&
-                 arr[1][1] === 0 &&
-                 arr[2][0] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(2, 0);
-        arr[2][0] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
-        return true;
-      } else if (arr[0][2] === 0 &&
-                 arr[1][1] == playerTwo &&
-                 arr[2][0] === 0 &&
-                 turn == playerTwo) {
-        insertSymbol(0, 2);
-        arr[0][2] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
-        return true;
-      } else if (arr[0][2] === 0 &&
-                 arr[1][1] === 0 &&
-                 arr[2][0] == playerTwo &&
-                 turn == playerTwo) {
-        insertSymbol(1, 1);
-        arr[1][1] = playerTwo;
-        turn = playerOne;
-        $('#comp-turn').delay(1000).fadeOut(500, function() {
-            $('#player-turn').fadeIn(500);
-        });
-        setTimeout(allowClick, 2000);
-        return true;
+      } else {
+        return false;
       }
     }
-    return false;
   }
 
   //This function draws the game and resets the board state for another game
@@ -622,6 +373,7 @@ $(function() {
     } else {
       drawGame();
     }
+    checkWin();
   }
 
   //Deciding to play again
