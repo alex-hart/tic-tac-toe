@@ -1,16 +1,11 @@
-//Hide indicators showing who's turn it is
+//Hide indicators, symbols and selection screen
 $(".turn-indicators").hide();
-
-//Hide all naughts and crosses symbols
 $(".symbol").hide();
-
-//Hide main menu screens
 $(".selection-screen").hide();
 
 //Document ready check
 $(function() {
   //Array of the tic tac toe board
-  //0: empty
   var arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
   var scenarioArr;
   var emptyRow, emptyColumn;
@@ -26,13 +21,15 @@ $(function() {
     }
   }
 
-  //Variables to track game type and who's turn it is
+  //Variables to track game type and who's turn it is and flag variable to
+  //Allow single-player click
   var gameMode, playerOne, playerTwo;
   var click = false;
 
   var $tableCells = $("td");
 
-  //Function to generate random number between min and max val, used for when computer has to make a random move if going first
+  //Function to generate random number between min and max val, used for when
+  //Computer has to make a random move if going first
   function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -81,7 +78,6 @@ $(function() {
   }
 
   // ----- COMPUTER AI -----
-
   function rowChecker(scenarioArr) {
     var tempArr = scenarioArr.slice();
     emptyColumn = 2;
@@ -172,7 +168,10 @@ $(function() {
     setTimeout(allowClick, 2000);
   }
 
-  //Function to end the game if the computer can make such a move. It essentially looks for every possible combination where two naughts or crosses are lined up with the third space blank as well. This is checked by using the array as a model of the current board state
+  //Function to end the game if the computer can make such a move.
+  //It essentially looks for every possible combination where two naughts or
+  //Crosses are lined up with the third space blank as well. This is checked by
+  //Using the array as a model of the current board state
   function endGame() {
     if (turn == playerTwo) {
       scenarioArr = [playerTwo, playerTwo, 0];
@@ -198,7 +197,9 @@ $(function() {
     }
   }
 
-  //This function is for the computer to block the human player from winning. It is essentially the same as the above function but checks for the player's symbols rather than its own.
+  //This function is for the computer to block the human player from winning.
+  //It is essentially the same As the above function but checks for the
+  //Player's symbols rather than its own.
   function blockWin() {
     if (turn == playerTwo) {
       scenarioArr = [playerOne, playerOne, 0];
@@ -220,7 +221,8 @@ $(function() {
     }
   }
 
-  //This function sets up a win for the computer for its next turn if the player does not block its next move.
+  //This function sets up a win for the computer for its next turn if the
+  //Player does not block its next move.
   function setupWin() {
     if (turn == playerTwo) {
       scenarioArr = [playerTwo, 0, 0];
@@ -250,7 +252,8 @@ $(function() {
     arr = [];
   }
 
-  //This function is for when the computer goes first and needs to make a random move
+  //This function is for when the computer goes first and needs to make a
+  //Random move
   function randomTurn() {
     if (checkBlank() === true &&
         turn == playerTwo) {
@@ -354,13 +357,16 @@ $(function() {
         });
       }
     }
-    //If all spots are taken and there is no match then it means the game is a draw
+    //If all spots are taken and there is no match then it means the game
+    //Is a draw
     if (checkBlank() === false) {
       drawGame();
     }
   }
 
-  //Computer turn function: flows down from top priority move functions to least priority move functions ending with drawing the game if no spots are available on the board
+  //Computer turn function: flows down from top priority move functions to
+  //Least priority move functions ending with drawing the game if no spots are
+  //Available on the board
   function computerTurn() {
     if (endGame()) {
       checkWin();
@@ -468,7 +474,10 @@ $(function() {
 
     //------- SINGLE PLAYER MODE -------
     } else {
-      if (arr[$(this).attr("row")][$(this).attr("position")] === 0 && click === true) {
+      if (
+        arr[$(this).attr("row")][$(this).attr("position")] === 0 &&
+        click === true
+      ) {
         arr[$(this).attr("row")][$(this).attr("position")] = turn;
         $(this).find("." + turn).show();
         checkWin();
