@@ -1,6 +1,5 @@
 //Hide indicators, symbols and selection screen
 $(".turn-indicators").hide();
-$(".symbol").hide();
 $(".selection-screen").hide();
 
 //Document ready check
@@ -72,7 +71,13 @@ $(function() {
     $tableCells.each(function() {
       if ($(this).attr("row") == row &&
           $(this).attr("position") == column) {
-        $(this).find("." + playerTwo).delay(1000).fadeIn(500);
+        if (playerTwo == "cross") {
+          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
+          $(this).children("img").hide().delay(1000).fadeIn(500);
+        } else {
+          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
+          $(this).children("img").hide().delay(1000).fadeIn(500)
+        }
       }
     });
   }
@@ -385,7 +390,10 @@ $(function() {
   //Deciding to play again
   $('#play-again').on('click', function() {
     arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-    $('.symbol').hide();
+    $tableCells.each(function() {
+      var symbol = $(this).children("img");
+      symbol.remove();
+    });
     $('#game-over-screen').hide();
     $('td').css("background", "");
     click = false;
@@ -456,7 +464,11 @@ $(function() {
     if (gameMode == "twoP") {
       if (arr[$(this).attr("row")][$(this).attr("position")] === 0) {
         arr[$(this).attr("row")][$(this).attr("position")] = turn;
-        $(this).find("." + turn).show();
+        if (turn == "cross") {
+          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
+        } else {
+          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
+        }
         checkWin();
         if (turn == "cross") {
           turn = "naught";
@@ -479,7 +491,11 @@ $(function() {
         click === true
       ) {
         arr[$(this).attr("row")][$(this).attr("position")] = turn;
-        $(this).find("." + turn).show();
+        if (turn == "cross") {
+          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
+        } else {
+          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
+        }
         checkWin();
         if (turn == "cross") {
           turn = "naught";
