@@ -1,9 +1,20 @@
-//Hide indicators, symbols and selection screen
-$(".turn-indicators").hide();
-$(".selection-screen").hide();
-
 //Document ready check
 $(function() {
+  var $turnIndicators = $(".turn-indicators");
+  var $tableCells = $("td");
+  var $winMessage = $('#win-message');
+  var $compTurn = $('#comp-turn');
+  var $playerTurn = $('#player-turn');
+  var $gameOverScreen = $('#game-over-screen');
+  var $playerScreen = $("#player-screen");
+  var $symbolScreen = $("#symbol-screen");
+  var playerTurn = $("#player-turn");
+  var compTurn = $("#comp-turn");
+  var $p1 = $("#p1");
+  var $p2 = $("#p2");
+  //Hide indicators, symbols and selection screen
+  $turnIndicators.hide();
+  $(".selection-screen").hide();
   //Array of the tic tac toe board
   var arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
   var scenarioArr;
@@ -24,8 +35,6 @@ $(function() {
   //Allow single-player click
   var gameMode, playerOne, playerTwo;
   var click = false;
-
-  var $tableCells = $("td");
 
   //Function to generate random number between min and max val, used for when
   //Computer has to make a random move if going first
@@ -54,29 +63,34 @@ $(function() {
     console.log(turn);
     if (gameMode == "twoP") {
       if (turn == playerOne) {
-        $('#win-message').text("Player 1 won!");
+        $winMessage.text("Player 1 won!");
       } else {
-        $('#win-message').text("Player 2 won!");
+        $winMessage.text("Player 2 won!");
       }
     } else if (gameMode == "oneP") {
       if (turn == playerOne) {
-        $('#win-message').text("You won!");
+        $winMessage.text("You won!");
       } else {
-        $('#win-message').text("You lost!");
+        $winMessage.text("You lost!");
       }
     }
   }
 
   function insertSymbol(row, column) {
     $tableCells.each(function() {
-      if ($(this).attr("row") == row &&
-          $(this).attr("position") == column) {
+      var $this = $(this);
+      if ($this.attr("row") == row &&
+          $this.attr("position") == column) {
         if (playerTwo == "cross") {
-          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
-          $(this).children("img").hide().delay(1000).fadeIn(500);
+          $this.prepend('<img class="symbol '
+          + playerTwo +
+          '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
+          $this.children("img").hide().delay(1000).fadeIn(500);
         } else {
-          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
-          $(this).children("img").hide().delay(1000).fadeIn(500)
+          $this.prepend('<img class="symbol '
+          + playerTwo +
+          '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
+          $this.children("img").hide().delay(1000).fadeIn(500)
         }
       }
     });
@@ -167,8 +181,8 @@ $(function() {
     insertSymbol(emptyRow, emptyColumn);
     arr[emptyRow][emptyColumn] = playerTwo;
     turn = playerOne;
-    $('#comp-turn').delay(1000).fadeOut(500, function() {
-      $('#player-turn').fadeIn(500);
+    $compTurn.delay(1000).fadeOut(500, function() {
+      $playerTurn.fadeIn(500);
     });
     setTimeout(allowClick, 2000);
   }
@@ -251,9 +265,9 @@ $(function() {
 
   //This function draws the game and resets the board state for another game
   function drawGame() {
-    $(".turn-indicators").hide();
-    $('#win-message').text("It's a draw!");
-    $('#game-over-screen').fadeIn(500);
+    $turnIndicators.hide();
+    $winMessage.text("It's a draw!");
+    $gameOverScreen.fadeIn(500);
     arr = [];
   }
 
@@ -271,8 +285,8 @@ $(function() {
       insertSymbol(val1, val2);
       arr[val1][val2] = playerTwo;
       turn = playerOne;
-      $('#comp-turn').delay(1000).fadeOut(500, function() {
-        $('#player-turn').fadeIn(500);
+      $compTurn.delay(1000).fadeOut(500, function() {
+        $playerTurn.fadeIn(500);
       });
       setTimeout(allowClick, 2000);
       return true;
@@ -291,15 +305,16 @@ $(function() {
           arr[i][1] == arr[i][2]) {
         row = [i, i, i];
         column = [0, 1, 2];
-        $(".turn-indicators").hide();
+        $turnIndicators.hide();
         gameOverMsg();
-        $("#game-over-screen").fadeIn(500);
+        $gameOverScreen.fadeIn(500);
         return $tableCells.each(function() {
+          var $this = $(this);
           //Colour in the winning cells
           for (var j = 0; j < row.length; j++) {
-            if ($(this).attr("row") == row[j] &&
-                $(this).attr("position") == column[j]) {
-              $(this).css("background", "#28876e");
+            if ($this.attr("row") == row[j] &&
+                $this.attr("position") == column[j]) {
+              $this.css("background", "#28876e");
             }
           }
         });
@@ -311,15 +326,16 @@ $(function() {
           arr[1][i] == arr[2][i]) {
         row = [0, 1, 2];
         column = [i, i, i];
-        $(".turn-indicators").hide();
+        $turnIndicators.hide();
         gameOverMsg();
-        $("#game-over-screen").fadeIn(500);
+        $gameOverScreen.fadeIn(500);
         return $tableCells.each(function() {
           //Colour in the winning cells
+          var $this = $(this);
           for (var j = 0; j < row.length; j++) {
-            if ($(this).attr("row") == row[j] &&
-                $(this).attr("position") == column[j]) {
-              $(this).css("background", "#28876e");
+            if ($this.attr("row") == row[j] &&
+                $this.attr("position") == column[j]) {
+              $this.css("background", "#28876e");
             }
           }
         });
@@ -330,15 +346,16 @@ $(function() {
           arr[1][1] == arr[2][2]) {
         row = [0, 1, 2];
         column = [0, 1, 2];
-        $(".turn-indicators").hide();
+        $turnIndicators.hide();
         gameOverMsg();
-        $("#game-over-screen").fadeIn(500);
+        $gameOverScreen.fadeIn(500);
         return $tableCells.each(function() {
           //Colour in the winning cells
+          var $this = $(this);
           for (var j = 0; j < row.length; j++) {
-            if ($(this).attr("row") == row[j] &&
-                $(this).attr("position") == column[j]) {
-              $(this).css("background", "#28876e");
+            if ($this.attr("row") == row[j] &&
+                $this.attr("position") == column[j]) {
+              $this.css("background", "#28876e");
             }
           }
         });
@@ -348,15 +365,16 @@ $(function() {
           arr[1][1] == arr[2][0]) {
         row = [0, 1, 2];
         column = [2, 1, 0];
-        $(".turn-indicators").hide();
+        $turnIndicators.hide();
         gameOverMsg();
-        $("#game-over-screen").fadeIn(500);
+        $gameOverScreen.fadeIn(500);
         return $tableCells.each(function() {
           //Colour in the winning cells
+          var $this = $(this);
           for (var j = 0; j < row.length; j++) {
-            if ($(this).attr("row") == row[j] &&
-                $(this).attr("position") == column[j]) {
-              $(this).css("background", "#28876e");
+            if ($this.attr("row") == row[j] &&
+                $this.attr("position") == column[j]) {
+              $this.css("background", "#28876e");
             }
           }
         });
@@ -394,7 +412,7 @@ $(function() {
       var symbol = $(this).children("img");
       symbol.remove();
     });
-    $('#game-over-screen').hide();
+    $gameOverScreen.hide();
     $('td').css("background", "");
     click = false;
     init()
@@ -402,26 +420,26 @@ $(function() {
 
   function init() {
     decideTurn();
-    $("#player-screen").fadeIn(500);
+    $playerScreen.fadeIn(500);
   }
 
   //Choosing single player mode
   $("#one-p").on("click", function(e) {
     gameMode = "oneP";
-    $("#player-screen").fadeOut(500);
-    $("#symbol-screen").fadeIn(500);
+    $playerScreen.fadeOut(500);
+    $symbolScreen.fadeIn(500);
     $("#single-player").show();
-    $("#player-turn").hide();
-    $("#comp-turn").hide();
+    $playerTurn.hide();
+    $compTurn.hide();
   });
 
   //Choosing two player mode
   $("#two-p").on("click", function(e) {
     gameMode = "twoP";
-    $("#player-screen").fadeOut(500);
+    $playerScreen.fadeOut(500);
     $("#two-players").show();
-    $("#p2").hide();
-    $("#p1").hide().fadeIn(500);
+    $p2.hide();
+    $p1.hide().fadeIn(500);
     playerOne = turn;
     if (playerOne == "cross") {
       playerTwo = "naught";
@@ -434,40 +452,44 @@ $(function() {
   $("#crosses").on("click", function(e) {
     playerOne = "cross";
     playerTwo = "naught";
-    $("#symbol-screen").fadeOut(500);
+    $symbolScreen.fadeOut(500);
     if (playerOne == turn) {
-      $("#player-turn").fadeIn(500);
+      $playerTurn.fadeIn(500);
       click = true;
     } else {
-      $("#comp-turn").fadeIn(500);
+      $compTurn.fadeIn(500);
       computerTurn();
     }
   });
   $("#naughts").on("click", function(e) {
     playerOne = "naught";
     playerTwo = "cross";
-    $("#symbol-screen").fadeOut(500);
+    $symbolScreen.fadeOut(500);
     if (playerOne == turn) {
-      $("#player-turn").fadeIn(500);
+      $playerTurn.fadeIn(500);
       click = true;
     } else {
-      $("#comp-turn").fadeIn(500);
+      $compTurn.fadeIn(500);
       computerTurn();
     }
   });
 
   //Actual game event handler for each turn taken
-  $("td").on("click", function(e) {
+  $tableCells.on("click", function(e) {
     e.preventDefault();
-
+    var $this = $(this);
     //------- TWO PLAYER MODE -------
     if (gameMode == "twoP") {
-      if (arr[$(this).attr("row")][$(this).attr("position")] === 0) {
-        arr[$(this).attr("row")][$(this).attr("position")] = turn;
+      if (arr[$this.attr("row")][$this.attr("position")] === 0) {
+        arr[$this.attr("row")][$this.attr("position")] = turn;
         if (turn == "cross") {
-          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
+          $this.prepend('<img class="symbol '
+          + playerTwo +
+          '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
         } else {
-          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
+          $this.prepend('<img class="symbol '
+          + playerTwo +
+          '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
         }
         checkWin();
         if (turn == "cross") {
@@ -477,24 +499,28 @@ $(function() {
         }
       }
       if (turn != playerOne) {
-        $("#p1").hide();
-        $("#p2").fadeIn(500);
+        $p1.hide();
+        $p2.fadeIn(500);
       } else {
-        $("#p2").hide();
-        $("#p1").fadeIn(500);
+        $p2.hide();
+        $p1.fadeIn(500);
       }
 
     //------- SINGLE PLAYER MODE -------
     } else {
       if (
-        arr[$(this).attr("row")][$(this).attr("position")] === 0 &&
+        arr[$this.attr("row")][$this.attr("position")] === 0 &&
         click === true
       ) {
-        arr[$(this).attr("row")][$(this).attr("position")] = turn;
+        arr[$this.attr("row")][$this.attr("position")] = turn;
         if (turn == "cross") {
-          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
+          $this.prepend('<img class="symbol '
+          + playerTwo +
+          '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
         } else {
-          $(this).prepend('<img class="symbol ' + playerTwo + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
+          $this.prepend('<img class="symbol '
+          + playerTwo
+          + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
         }
         checkWin();
         if (turn == "cross") {
@@ -502,8 +528,8 @@ $(function() {
         } else {
           turn = "cross";
         }
-        $('#player-turn').hide();
-        $('#comp-turn').fadeIn(500);
+        $playerTurn.hide();
+        $compTurn.fadeIn(500);
         click = false;
         computerTurn();
       }
