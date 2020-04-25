@@ -84,12 +84,12 @@ $(function() {
         if (playerTwo == "cross") {
           $this.prepend('<img class="symbol '
           + playerTwo +
-          '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
+          '" src="images/cross_icon.png"/>');
           $this.children("img").hide().delay(1000).fadeIn(500);
         } else {
           $this.prepend('<img class="symbol '
           + playerTwo +
-          '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
+          '" src="images/circle_icon.png"/>');
           $this.children("img").hide().delay(1000).fadeIn(500)
         }
       }
@@ -485,11 +485,11 @@ $(function() {
         if (turn == "cross") {
           $this.prepend('<img class="symbol '
           + playerTwo +
-          '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
+          '" src="images/cross_icon.png"/>');
         } else {
           $this.prepend('<img class="symbol '
           + playerTwo +
-          '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
+          '" src="images/circle.png"/>');
         }
         checkWin();
         if (turn == "cross") {
@@ -516,11 +516,11 @@ $(function() {
         if (turn == "cross") {
           $this.prepend('<img class="symbol '
           + playerTwo +
-          '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playX_zpsmvfgrbbl.png"/>');
+          '" src="images/cross_icon.png"/>');
         } else {
           $this.prepend('<img class="symbol '
           + playerTwo
-          + '" src="http://i1378.photobucket.com/albums/ah89/andreykokhanevich/TICTATTOE_IMG/playO_zpsixjh02ca.png"/>');
+          + '" src="images/circle_icon.png"/>');
         }
         checkWin();
         if (turn == "cross") {
